@@ -22,6 +22,8 @@ class SplashActivity : AppCompatActivity(), View.OnClickListener {
         mSecurityPreferences = SecurityPreferences(this)
 
         button_save.setOnClickListener(this)
+
+        verifyName()
     }
 
     override fun onClick(v: View?) {
@@ -31,12 +33,21 @@ class SplashActivity : AppCompatActivity(), View.OnClickListener {
         }
     }
 
+    private fun verifyName() {
+        val name = mSecurityPreferences.getString(MotivationConstants.KEY.PERSON_NAME)
+        if(name != ""){
+            startActivity(Intent(this, MainActivity::class.java))
+            finish()
+        }
+    }
+
     private fun handleSave() {
         val name = editName.text.toString()
 
         if( name != "") {
             mSecurityPreferences.storeString(MotivationConstants.KEY.PERSON_NAME, name)
             startActivity(Intent(this, MainActivity::class.java))
+            finish()
         } else {
             Toast.makeText(applicationContext, "Preencha o campo com seu nome", Toast.LENGTH_SHORT).show()
         }

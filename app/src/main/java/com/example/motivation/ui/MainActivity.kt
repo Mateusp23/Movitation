@@ -20,7 +20,8 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         supportActionBar?.hide()
 
         mSecurityPreferences = SecurityPreferences(this)
-        textName.text = mSecurityPreferences.getString(MotivationConstants.KEY.PERSON_NAME)
+        val name = mSecurityPreferences.getString(MotivationConstants.KEY.PERSON_NAME)
+        textName.text = "Olá, $name!"
 
         //logica inicial de seleção
         imageAll.setColorFilter(resources.getColor(R.color.purple_700))
